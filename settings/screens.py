@@ -30,5 +30,7 @@ else:
     connected_monitors = int(command.stdout.decode("UTF-8"))
 
 if connected_monitors > 1:
-    for _ in range(1, connected_monitors):
-        screens.append(Screen(top=status_bar(secondary_widgets)))
+    screens.extend(
+        Screen(top=status_bar(secondary_widgets))
+        for _ in range(1, connected_monitors)
+    )
